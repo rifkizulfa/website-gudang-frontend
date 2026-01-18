@@ -1,0 +1,686 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+body {
+  background-color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ /* system selector*/ 
+.sap-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          background: #f5f7fa;
+          font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+.sap-container {
+          background: #fff;
+          border: 1px solid #cfcfcf;
+          box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+          padding: 40px;
+          border-radius: 6px;
+          min-width: 800px;
+          text-align: center;
+          height: 300px;
+        }
+.sap-title {
+          margin: 0 0 20px 0;
+          font-size: 60px;
+          color: #0a3a66;
+        }
+        .sap-button-group {
+          display: flex;
+          gap: 60px;
+          justify-content: center;
+          margin-bottom: 40px;
+          margin-top: 50px;
+        }
+        .sap-button {
+          padding: 10px 20px;
+          background: #000;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 25px;
+          font-weight: 600px;
+          transition: background 0.5s;
+    
+        }
+        .sap-button:hover {
+          background: #333;
+        }
+        .sap-exit-button {
+          padding: 10px 20px;
+          background: #dc3545;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          margin-top: 20px;
+          transition: background 0.2s;
+        }
+        .sap-exit-button:hover {
+          background: #c82333;
+        }
+
+/* login form */
+.sap-login-form {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 20px;
+          height: 300px;
+        }
+        .sap-login-form h2 {
+          margin: 0 0 16px 0;
+          font-size: 1.2rem;
+          color: #0a3a66;
+        }
+        .sap-login-form input {
+          padding: 10px 12px;
+          border: 1px solid #999;
+          border-radius: 4px;
+          font-size: 14px;
+        }
+        .sap-login-form input:focus {
+          outline: none;
+          border-color: #0a3a66;
+          box-shadow: 0 0 4px rgba(10, 58, 102, 0.3);
+        }
+        .sap-login-form button {
+          padding: 10px 20px;
+          background: #0a3a66;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          transition: background 0.2s;
+        }
+        .sap-login-form button:hover:not(:disabled) {
+          background: #0a3a88;
+        }
+        .sap-login-form button:disabled {
+          background: #999;
+          cursor: not-allowed;
+        }
+
+/* menu utama */
+.menu-utama-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          width: 100%;
+          min-height: 100vh;
+          background: #f5f7fa;
+          font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        }
+        .menu-utama-card {
+          width: 50%;
+          height: 600px;
+          background: #fff;
+          border: 1px solid #cfcfcf;
+          box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+          padding: 40px;
+          border-radius: 6px;
+          min-height: 350px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .menu-utama-title {
+          margin: 4px 0 2px 0;
+          font-size: 1.4rem;
+          color: #0a3a66;
+          text-align: center;
+        }
+        .menu-utama-user {
+          text-align: center;
+          font-size: 0.9rem;
+          color: #666;
+          margin-bottom: 12px;
+          margin-top: 0;
+          padding-bottom: 8px;
+          border-bottom: 1px solid #e0e0e0;
+        }
+        .menu-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .menu-item {
+          display: flex;
+          padding: 12px 14px;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background 0.2s;
+          gap: 16px;
+          align-items: center;
+        }
+        .menu-item:hover {
+          background: #f0f7ff;
+        }
+        .menu-code {
+          font-weight: 700;
+          color: #00477a;
+          min-width: 80px;
+        }
+        .menu-label {
+          color: #222;
+          flex: 1;
+        }
+        .menu-logout-btn {
+          margin-top: 20px;
+          padding: 10px 20px;
+          background: #dc3545;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          width: 100%;
+          transition: background 0.2s;
+        }
+        .menu-logout-btn:hover {
+          background: #c82333;
+        }
+
+/* ZSDI002 Component */
+      .sales-form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #f5f7fa;
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      }
+
+      .sales-form-card {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 40px;
+        border-radius: 6px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        width: 600px;
+      }
+
+      .section {
+        margin-bottom: 32px;
+         color: #1a73e8
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+        color: #0a3a66;
+        margin-bottom: 12px;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+        border: 1px solid #999;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      .input-field:focus {
+        outline: none;
+        border-color: #0a3a66;
+        box-shadow: 0 0 4px rgba(10, 58, 102, 0.3);
+      }
+
+      .kembali{
+        background: #0c0c0c;
+        border: 1px solid #ccc;
+        color: #fff;
+        padding: 16px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        text-decoration: none;
+      }
+      .btn-zsdi002 {
+        background: #0a3a66;
+        display: flex;
+        margin-top: 24px;
+        margin-bottom: 35px;
+      }
+
+      .kembali:active,
+      .kembali:focus,
+      .kembali:visited {
+        color: #fff;
+        background: #0c0c0c;
+        text-decoration: none;
+        outline: none;
+      }
+
+/* zmme0011 */
+
+        .section {
+        margin-bottom: 20px;
+      }
+
+      .section label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #0a3a66;
+      }
+
+      .section input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #999;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .btn-zmme0011 {
+        background: #0a3a66;
+        border: 1px solid #ccc;
+        color: #fff;
+        padding: 16px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        text-decoration: none;
+        height: 55px;
+        margin-top: 20px;
+      }
+
+      .btn-validate {
+        background: #0a3a66;
+        padding: 16px;
+        height: 55px;
+        margin-top: 20px;
+      }
+
+      .kembali {
+        border: 1px solid #ccc;
+        color: #fff;
+        padding: 16px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        text-decoration: none;
+        height: 20px;
+        margin-top: 20px;
+      }
+      .kembali:visited,
+      .kembali:active,
+      .kembali:focus {
+        color: #fff;
+        background: #0a3a66;
+        text-decoration: none;
+        outline: none;
+      }
+/* menu pilihan */
+
+      .b-pilihan{
+        margin-bottom: 10px;
+      }
+
+      .item{
+        font-weight: 400;
+        font-size: 18px;
+        color: #0c0c0c;
+        margin-bottom: 20px;
+      }
+/* Menu Laporan list */
+
+.laporan-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.laporan-container h2 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 20px;
+  border-left: 5px solid #007bff;
+  padding-left: 10px;
+}
+
+.laporan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.laporan-table th,
+.laporan-table td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.laporan-table th {
+  background-color: #0a3a66;
+  color: #fff;
+  font-weight: bold;
+}
+
+.laporan-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.laporan-table tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.laporan-section {
+  margin-bottom: 40px;
+}
+
+/* Menu User List */
+
+.userlist-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.userlist-container h2 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 22px;
+  border-left: 5px solid #0a3a66;
+  padding-left: 10px;
+}
+
+.userlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.userlist-table th,
+.userlist-table td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.userlist-table th {
+  background-color: #0a3a66;
+  color: #fff;
+  font-weight: bold;
+}
+
+.userlist-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.userlist-table tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color: #000 !important;
+  }
+  
+  html, body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+  
+  .sales-form-wrapper {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  
+  .sales-form-card {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  
+  #print-area {
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
+    padding: 10px !important;
+    page-break-after: auto;
+    background: white !important;
+    position: relative !important;
+    border: none !important;
+  }
+  
+  #print-area * {
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  #print-area table {
+    width: 100% !important;
+    display: table !important;
+  }
+  
+  #print-area tr {
+    display: table-row !important;
+  }
+  
+  #print-area td {
+    display: table-cell !important;
+    border: 1px solid #000 !important;
+  }
+}
+
+/* ============================================
+   PRINT AREA STYLING (Screen Display)
+   ============================================ */
+
+#print-area {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  color: #000;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.print-header {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #000;
+  padding-bottom: 10px;
+}
+
+.print-header h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.print-info-section {
+  margin-bottom: 20px;
+}
+
+.print-info-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.print-info-section td {
+  padding-bottom: 6px;
+}
+
+.print-info-section strong {
+  font-weight: bold;
+}
+
+.print-barang-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #000;
+  margin-bottom: 30px;
+}
+
+.print-barang-table thead tr {
+  background-color: #e8e8e8;
+}
+
+.print-barang-table th,
+.print-barang-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: left;
+  font-size: 10px;
+}
+
+.print-barang-table th {
+  text-align: center;
+  font-weight: bold;
+}
+
+.print-barang-table td {
+  padding: 6px;
+}
+
+.print-barang-table .col-no,
+.print-barang-table .col-qty,
+.print-barang-table .col-satuan {
+  text-align: center;
+}
+
+.print-signature-section {
+  margin-top: 50px;
+}
+
+.print-signature-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.print-signature-table td {
+  border: none;
+  padding: 0;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.print-sig-box {
+  width: 50%;
+  padding: 20px;
+}
+
+.print-sig-box:first-child {
+  padding-right: 40px;
+}
+
+.print-sig-box:last-child {
+  padding-left: 40px;
+}
+
+.print-sig-line {
+  margin-bottom: 70px;
+  min-height: 60px;
+}
+
+.print-sig-name {
+  border-top: 1px solid #000;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+/* ============================================
+   PRINT WINDOW STYLES (for window.open())
+   ============================================ */
+
+.print-window-body {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  color: #000;
+  background: white;
+  padding: 20px;
+  margin: 0;
+}
+
+.print-window-body * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.print-window-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.print-window-table td {
+  padding: 4px;
+  text-align: left;
+}
+
+.print-window-table th {
+  padding: 4px;
+  text-align: left;
+  font-weight: bold;
+  background-color: #e8e8e8;
+  border: 1px solid #000;
+}
+
+.print-window-table td,
+.print-window-table th {
+  border: 1px solid #000;
+}
+
+.print-window-hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #000;
+}
+
+.print-window-h1 {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.print-window-content-box {
+  border: 2px solid #000;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.print-window-div {
+  margin-bottom: 0;
+}
+
+.print-window-strong {
+  font-weight: bold;
+}
