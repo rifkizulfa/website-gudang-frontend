@@ -9,7 +9,7 @@ import Pilihan from './components/Pilihan';
 import Zsdi001 from './components/Zsdi001'; 
 import UserList from './components/UserList';
 import LaporanList from './components/LaporanList';
-import OtoritasMenu from './components/Otoritasmenu'; 
+import OtoritasMenu from './components/OtoritasMenu'; 
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
