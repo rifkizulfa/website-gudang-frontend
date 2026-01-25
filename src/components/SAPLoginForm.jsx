@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import apiClient from "../api/axiosConfig";
+import axios from "axios";
 import "../styles/sap-style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,18 +17,28 @@ export default function SAPLoginForm({ onLogin, selectedSystem }) {
 
     setLoading(true);
     try {
-      // ✅ Gunakan axios dengan proper await
-      const response = await apiClient.post("/login", {
-        username,
-        password,
-        system: selectedSystem
-      });
+      // Gunakan axios langsung dengan baseURL dari environment variable
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
+        {
+          username,
+          password,
+          system: selectedSystem,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = response.data;
       if (data.status === "success") {
         console.log("✓ Backend login success", data);
         onLogin(data.user?.username || username);
 
+        // Navigasi sesuai sistem yang dipilih
         if (selectedSystem === "PRD-1") {
           navigate("/MenuPRD1");
         } else if (selectedSystem === "PRD-2") {
