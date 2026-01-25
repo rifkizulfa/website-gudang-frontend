@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/sap-style.css";
 
 export default function UserList() {
@@ -14,15 +15,9 @@ export default function UserList() {
 
   // Ambil data user
   const fetchUsers = () => {
-    fetch("http://localhost:3000/users")
-      .then(res => res.json())
-      .then(result => {
-        if (result.status === "success") {
-          setUsers(result.data);
-        } else {
-          alert("Gagal ambil data: " + result.message);
-        }
-      });
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`)
+      .then(res => setUsers(res.data.data))
+      .catch(err => alert("Gagal ambil data: " + err.message));
   };
 
   useEffect(() => {
@@ -36,12 +31,7 @@ export default function UserList() {
       return;
     }
     try {
-      const res = await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: newUsername, password: newPassword, role_id: newRoleId })
-      });
-      const data = await res.json();
+      const data = (await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users`, { username: newUsername, password: newPassword, role_id: newRoleId })).data;
       if (data.status === "success") {
         alert("✅ User berhasil ditambahkan");
         setNewUsername("");
@@ -64,12 +54,7 @@ export default function UserList() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:3000/users/${editId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: editUsername, password: editPassword, role_id: editRoleId })
-      });
-      const data = await res.json();
+      const data = (await axios.put(`${import.meta.env.VITE_BACKEND_URL}/users/${editId}`, { username: editUsername, password: editPassword, role_id: editRoleId })).data;
       if (data.status === "success") {
         alert("✅ User berhasil diupdate");
         setEditId(null);
@@ -90,8 +75,7 @@ export default function UserList() {
   const handleDeleteUser = async (id) => {
     if (!window.confirm("Yakin hapus user ini?")) return;
     try {
-      const res = await fetch(`http://localhost:3000/users/${id}`, { method: "DELETE" });
-      const data = await res.json();
+      const data = (await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`)).data;
       if (data.status === "success") {
         alert("✅ User berhasil dihapus");
         fetchUsers();

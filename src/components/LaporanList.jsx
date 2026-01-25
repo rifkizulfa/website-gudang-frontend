@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/sap-style.css";
 
 export default function LaporanList() {
@@ -7,25 +8,13 @@ export default function LaporanList() {
   const [laporanKeluar, setLaporanKeluar] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/barang-masuk")
-      .then(res => res.json())
-      .then(result => {
-        if (result.status === "success") {
-          setLaporanMasuk(result.data);
-        } else {
-          alert("Gagal ambil data barang masuk: " + result.message);
-        }
-      });
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/barang-masuk`)
+      .then(res => setLaporanMasuk(res.data.data))
+      .catch(err => alert("Gagal ambil data barang masuk: " + err.message));
 
-    fetch("http://localhost:3000/surat-jalan")
-      .then(res => res.json())
-      .then(result => {
-        if (result.status === "success") {
-          setLaporanKeluar(result.data);
-        } else {
-          alert("Gagal ambil data barang keluar: " + result.message);
-        }
-      });
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/surat-jalan`)
+      .then(res => setLaporanKeluar(res.data.data))
+      .catch(err => alert("Gagal ambil data barang keluar: " + err.message));
   }, []);
 
   return (

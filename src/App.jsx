@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import SAPSystemSelector from './components/SAPSystemSelector';
 import Zsdi002 from './components/zsdi002';
@@ -16,8 +17,7 @@ function App() {
 
   useEffect(() => {
     // Optional: Cek koneksi backend
-    fetch("http://localhost:3000/")
-      .then(res => res.json())
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/`)
       .then(data => console.log("✓ Backend connected:", data))
       .catch(err => console.warn("⚠️ Backend tidak terhubung:", err));
   }, []);

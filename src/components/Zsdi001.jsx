@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/sap-style.css";
 
 const OPTIONS = ["CB001", "CB002", "CB003"];
@@ -44,8 +45,7 @@ export default function Zsdi001() {
     }
     setLoadingAdd(true);
     try {
-      const response = await fetch(`http://localhost:3000/barang/${kode_barang}`);
-      const result = await response.json();
+      const result = (await axios.get(`${import.meta.env.VITE_BACKEND_URL}/barang/${kode_barang}`)).data;
 
       if (result.status === "success" && result.data) {
         const barangDetail = result.data;
@@ -82,34 +82,23 @@ export default function Zsdi001() {
 
     setLoadingSave(true);
     try {
-      const headerRes = await fetch("http://localhost:3000/surat-jalan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      const headerResult = await headerRes.json();
+      const headerResult = (await axios.post(`${import.meta.env.VITE_BACKEND_URL}/surat-jalan`, formData)).data;
 
       if (headerResult.status === "success") {
         const suratJalanId = headerResult.data.id;
 
         for (const item of barangList) {
-          await fetch("http://localhost:3000/surat-jalan-detail", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              surat_jalan_id: suratJalanId,
-              kode_barang: item.kode_barang,
-              nama_barang: item.nama_barang,
-              satuan: item.satuan,
-              qty: item.qty,
-              deskripsi: item.deskripsi || null
-            })
+          await axios.post(`${import.meta.env.VITE_BACKEND_URL}/surat-jalan-detail`, {
+            surat_jalan_id: suratJalanId,
+            kode_barang: item.kode_barang,
+            nama_barang: item.nama_barang,
+            satuan: item.satuan,
+            qty: item.qty,
+            deskripsi: item.deskripsi || null
           });
         }
 
         alert("✅ Surat Jalan & detail berhasil disimpan!");
-      } else {
-        alert("Gagal simpan: " + (headerResult.message || "Unknown error"));
       }
     } catch (err) {
       console.error("Error:", err);

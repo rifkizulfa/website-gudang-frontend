@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/sap-style.css";
 
 export default function BarangMasukForm() {
@@ -39,8 +40,7 @@ export default function BarangMasukForm() {
     
     try {
       // 1. Fetch semua surat jalan, cari yang match
-      const suratResponse = await fetch("http://localhost:3000/surat-jalan");
-      const suratResult = await suratResponse.json();
+      const suratResult = (await axios.get(`${import.meta.env.VITE_BACKEND_URL}/surat-jalan`)).data;
       
       if (suratResult.status === "success" && suratResult.data) {
         const suratFound = suratResult.data.find(s => s.nomor_surat_jalan === nomorSJ);
@@ -54,8 +54,7 @@ export default function BarangMasukForm() {
       }
 
       // 2. Fetch semua barang masuk, cari yang match dengan nomor dokumen
-      const barangResponse = await fetch("http://localhost:3000/barang-masuk");
-      const barangResult = await barangResponse.json();
+      const barangResult = (await axios.get(`${import.meta.env.VITE_BACKEND_URL}/barang-masuk`)).data;
       
       if (barangResult.status === "success" && barangResult.data) {
         const barangFound = barangResult.data.find(b => b.nomor_dokumen === nomorSJ);
@@ -90,8 +89,7 @@ export default function BarangMasukForm() {
     }
     setLoadingAdd(true);
     try {
-      const response = await fetch(`http://localhost:3000/barang/${kode_barang}`);
-      const result = await response.json();
+      const result = (await axios.get(`${import.meta.env.VITE_BACKEND_URL}/barang/${kode_barang}`)).data;
 
       if (result.status === "success" && result.data) {
         const barangDetail = result.data;
@@ -128,8 +126,7 @@ export default function BarangMasukForm() {
 
     try {
       // 🔍 Cek apakah nomor_dokumen sudah ada di DB
-      const checkResponse = await fetch("http://localhost:3000/barang-masuk");
-      const existingData = await checkResponse.json();
+      const existingData = (await axios.get(`${import.meta.env.VITE_BACKEND_URL}/barang-masuk`)).data;
 
       const exists = existingData.data.some(item => item.nomor_dokumen === nomorDokumen);
       if (exists) {
@@ -149,13 +146,7 @@ export default function BarangMasukForm() {
   // ✅ Simpan ke DB
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:3000/barang-masuk", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await response.json();
+      const data = (await axios.post(`${import.meta.env.VITE_BACKEND_URL}/barang-masuk`, payload)).data;
       if (data.status === "success") {
         alert("✅ Barang Masuk berhasil disimpan");
         // Tidak reset form, biarkan data tetap ada

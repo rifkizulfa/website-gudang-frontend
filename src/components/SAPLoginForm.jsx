@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../styles/sap-style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -16,14 +17,7 @@ export default function SAPLoginForm({ onLogin, selectedSystem }) {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password, system: selectedSystem }),
-      });
-
-      
-      const data = await response.json();
+      const data = (await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, { username, password, system: selectedSystem })).data;
       if (data.status === "success") {
         console.log("✓ Backend login success", data);
         onLogin(data.user?.username || username);
