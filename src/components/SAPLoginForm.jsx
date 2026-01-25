@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import apiClient from "../api/axiosConfig";
+import apiClient from "../axiosConfig";
 import "../styles/sap-style.css";
 import { useNavigate } from "react-router-dom";
 
