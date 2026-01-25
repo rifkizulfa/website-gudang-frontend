@@ -3,7 +3,7 @@ import apiClient from "../api/axiosConfig";
 import "../styles/sap-style.css";
 import { useNavigate } from "react-router-dom";
 
-export default function SAPLoginForm({ onLogin, selectedSystem }) {
+export default function SAPLoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,23 +17,16 @@ export default function SAPLoginForm({ onLogin, selectedSystem }) {
 
     setLoading(true);
     try {
-      // ✅ Gunakan axios dengan proper await
       const response = await apiClient.post("/login", {
         username,
-        password,
-        system: selectedSystem
+        password
       });
 
       const data = response.data;
       if (data.status === "success") {
-        console.log("✓ Backend login success", data);
+        console.log("✓ Login success", data);
         onLogin(data.user?.username || username);
-
-        if (selectedSystem === "PRD-1") {
-          navigate("/MenuPRD1");
-        } else if (selectedSystem === "PRD-2") {
-          navigate("/MenuPRD2");
-        }
+        navigate("/MenuPRD1");
       } else {
         alert("Login failed: " + (data.message || "Unknown error"));
       }
