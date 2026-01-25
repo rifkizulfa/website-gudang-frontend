@@ -17,7 +17,8 @@ export default function SAPLoginForm({ onLogin, selectedSystem }) {
 
     setLoading(true);
     try {
-      const data = (await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, { username, password, system: selectedSystem })).data;
+      const data = (axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, data))
+
       if (data.status === "success") {
         console.log("✓ Backend login success", data);
         onLogin(data.user?.username || username);
