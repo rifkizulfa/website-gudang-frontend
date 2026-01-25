@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import apiClient from "../api/axiosConfig";
+import axios from "axios"; // ✅ jangan lupa import axios
 import "../styles/sap-style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,16 +17,21 @@ export default function SAPLoginForm({ onLogin }) {
 
     setLoading(true);
     try {
-      const response = await apiClient.post("/login", {
-        username,
-        password
-      });
+      // ✅ simpan response agar bisa ambil response.data
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
+        { username, password },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // harus sesuai dengan backend
+        }
+      );
 
       const data = response.data;
       if (data.status === "success") {
         console.log("✓ Login success", data);
         onLogin(data.user?.username || username);
-        navigate("/MenuPRD1");
+        navigate("/MenuPRD1"); // arahkan ke menu setelah login
       } else {
         alert("Login failed: " + (data.message || "Unknown error"));
       }
