@@ -11,7 +11,7 @@ export default function SAPLoginForm({ onLogin }) {
 
   const testBackend = async () => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/`);
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/test`);
     console.log("✓ Backend aktif:", response.data);
     alert("Backend aktif: " + response.data.message);
   } catch (error) {
@@ -35,7 +35,7 @@ export default function SAPLoginForm({ onLogin }) {
         { username, password },
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true, // harus sesuai dengan backend
+          
         }
       );
 
