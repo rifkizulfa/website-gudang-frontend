@@ -34,16 +34,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/MenuPRD2"
-          element={
-            loggedInUser ? (
-              <MenuPRD2 username={loggedInUser} onLogout={handleLogout} />
-            ) : (
-              <SAPSystemSelector onLogin={handleLoginSuccess} />
-            )
-          }
-        />
+        <Route path="/" element={<SAPSystemSelector onLogin={handleLoginSuccess} />} />
+        
         <Route
           path="/MenuPRD1"
           element={
@@ -54,15 +46,25 @@ function App() {
             )
           }
         />
-        <Route path="/" element={<SAPSystemSelector onLogin={handleLoginSuccess} />} />
+        
+        <Route
+          path="/MenuPRD2"
+          element={
+            loggedInUser ? (
+              <MenuPRD2 username={loggedInUser} onLogout={handleLogout} />
+            ) : (
+              <SAPSystemSelector onLogin={handleLoginSuccess} />
+            )
+          }
+        />
+        
         <Route path="/zsdi002" element={<Zsdi002/>} />
         <Route path="/zmme0011" element={<Zmme0011/>} />
-        <Route path="/MenuPRD1" element={<MenuPRD1 />} />
         <Route path="/Pilihan" element={<Pilihan />} />
         <Route path="/Zsdi001" element={<Zsdi001 />} />
         <Route path="/UserList" element={<UserList />} />
-         <Route path="/LaporanList" element={<LaporanList />} />
-         <Route path="/OtoritasMenu" element={<OtoritasMenu />} />
+        <Route path="/LaporanList" element={<LaporanList />} />
+        <Route path="/OtoritasMenu" element={<OtoritasMenu />} />
       </Routes>
     </Router>
   );

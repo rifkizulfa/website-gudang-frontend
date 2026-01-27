@@ -9,6 +9,18 @@ export default function SAPLoginForm({ onLogin }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const testBackend = async () => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/`);
+    console.log("✓ Backend aktif:", response.data);
+    alert("Backend aktif: " + response.data.message);
+  } catch (error) {
+    console.error("❌ Backend tidak terhubung:", error);
+    alert("Gagal konek ke backend: " + error.message);
+  }
+};
+
+
   const handleLogin = async () => {
     if (!username || !password) {
       alert("Username dan Password harus diisi");
@@ -41,6 +53,8 @@ export default function SAPLoginForm({ onLogin }) {
     } finally {
       setLoading(false);
     }
+
+    
   };
 
   return (
@@ -63,6 +77,13 @@ export default function SAPLoginForm({ onLogin }) {
       <button onClick={handleLogin} disabled={loading}>
         {loading ? "Logging in..." : "Login"}
       </button>
+
+      <button onClick={testBackend} disabled={loading}>
+  Test Backend
+</button>
+
     </div>
+
+    
   );
 }
