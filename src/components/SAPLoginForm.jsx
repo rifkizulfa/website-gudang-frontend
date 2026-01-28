@@ -9,9 +9,11 @@ export default function SAPLoginForm({ onLogin }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const CORS_PROXY = "https://www.cors-anywhere.com/";
+
   const testBackend = async () => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/test`);
+    const response = await axios.get(`${CORS_PROXY}${import.meta.env.VITE_BACKEND_URL}/test`);
     console.log("✓ Backend aktif:", response.data);
     alert("Backend aktif: " + response.data.message);
   } catch (error) {
@@ -31,7 +33,7 @@ export default function SAPLoginForm({ onLogin }) {
     try {
       // ✅ simpan response agar bisa ambil response.data
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/login`,
+        `${CORS_PROXY}${import.meta.env.VITE_BACKEND_URL}/login`,
         { username, password },
         {
           headers: { "Content-Type": "application/json" },
